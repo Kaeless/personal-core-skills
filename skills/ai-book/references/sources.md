@@ -6,7 +6,7 @@
 - [配套源码仓库](https://github.com/bojieli/ai-agent-book)
 - 本次核对日期：2026-09-23。
 - 源码快照：`22fd9c5041a378ff0019d91fe22fed9482f8b128`。
-- 阅读方式：读取网站入口，浏览中文章节开头与目录，重点抽样第 1、2、3、7 章相关段落及对应实验 README、实现和测试；没有逐字审阅全书，也没有运行上游全部实验。
+- 阅读方式：读取网站入口，浏览中文章节开头与目录，重点抽样第 1、2、3、7 章相关段落及对应实验 README、实现和测试；没有逐字审阅全书，也没有运行上游全部实验。后续补读同一快照的网页 README、首页/阅读器组件、全局/阅读样式和阅读位置实现；浏览器无可用连接，网页规则基于源码核对，未做原站视觉或交互实测。
 
 下列链接固定到已读取的版本，便于重新核对。这里描述的是样本中的做法，不推断全仓库处处一致。
 
@@ -25,6 +25,33 @@
 | [记忆检索离线演示](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/chapter3/agentic-rag-for-user-memory/offline_demo.py#L1-L150) | 本地检索、规则驱动的多轮查询、证据覆盖与逐步轨迹分开呈现 | 交代离线替代了哪个环节，避免将规则演示解释为模型能力 |
 | [评估纯逻辑](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/chapter7/android-world/experiment_core.py#L1-L165)与[测试样本](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/chapter7/android-world/test_experiment.py#L1-L100) | 报告逻辑与模拟器导入分离；记录运行错误、有效配对、成本与证据不足；测试脱敏和特定异常边界 | 可独立验证的计算与外部环境分离；失败和证据不足成为结果的一部分 |
 | [第 1 章实验台账](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/chapter1/EXPERIMENT_LEDGER.md) | 记录具体运行条件、服务受限情况、消融实现修正及不被实验支持的旧判断 | 预期服从证据；历史结果附带适用条件 |
+
+## 网页风格的补充来源
+
+以下同样固定在上述快照。指南以源码中的实际配置为起点，包含明确标注的适用范围与新增验收建议。
+
+| 来源 | 核对内容 | 对应规则 |
+| --- | --- | --- |
+| [网页项目说明](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/web-astro/README.md) | 功能、存储与备份范围、渐进增强、单一正文来源、部署、图形适配和已知限制 | 阅读交互、来源一致性、部署与降级要求；不将未实现搜索列为原站能力 |
+| [首页组件](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/web-astro/src/components/Home.astro) | 书籍首屏、前置知识、阅读入口、章节卡片与实验入口 | 首页信息顺序与内容导航 |
+| [阅读器组件](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/web-astro/src/components/Reader.astro) | 目录、工具栏、页间导航、代码复制和折行、滚动进度 | 页面区域与增强交互 |
+| [全局样式](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/web-astro/src/styles/global.css) | 深浅色变量、字体栈、焦点与基础布局 | 语义色板与字体起点 |
+| [阅读器样式](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/web-astro/src/styles/reader.css) | 三列宽度、正文排版、引用块、代码、多个断点与底部安全区域 | 响应式排版与不遮挡正文的移动控制 |
+| [阅读位置数据](https://github.com/bojieli/ai-agent-book/blob/22fd9c5041a378ff0019d91fe22fed9482f8b128/web-astro/src/lib/reading-position.ts) | 章节、小节、相对偏移、版本校验及存储失败处理 | 恢复状态的数据约束与降级 |
+
+## 补缺核对
+
+| 维度 | 修订后的归属 | 边界 |
+| --- | --- | --- |
+| 正文讲解与章节结构 | `writing.md` | 已有内容保留 |
+| 实验实现、运行与证据 | `labs.md` | 已有内容保留，未运行上游全部实验 |
+| 首页、三栏阅读器、主题与排版 | `web-reading.md` | 新增，具体值可调整 |
+| 阅读状态、笔记、移动交互与可访问性 | `web-reading.md` | 新增，按所需页面范围实现 |
+| 代码、图表、公式、脚注与复制 | `writing.md` + `web-reading.md` | 补充网页呈现与交互要求 |
+| 单一内容来源、图形数据保真与部署路径 | `web-reading.md` | 新增，避免网页改版损坏内容 |
+| 来源证据与验收边界 | 本文件 + `web-reading.md` | 来源检查不等于浏览器实测 |
+
+未打包原站 CSS、组件或现成网站模板；当前交付是可迁移的 Skill 指南。多语言、全文搜索、云端同步和自动部署不是通用默认功能。交付具体网站时，仍需按项目需求实现并验证。
 
 ## 本 Skill 新增的综合建议
 

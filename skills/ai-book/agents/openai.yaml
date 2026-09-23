@@ -1,4 +1,4 @@
 interface:
   display_name: "AI Book 技术书与实验"
-  short_description: "从具体问题讲清机制，以可运行代码、对照实验和证据组织中文技术书"
-  default_prompt: "使用 $ai-book 围绕指定技术主题编写章节和配套实验，讲清机制、代码路径、观察方法与结论边界。"
+  short_description: "编写机制驱动的中文技术书、配套实验与包含布局和阅读交互的在线书籍"
+  default_prompt: "使用 $ai-book 围绕指定技术主题编写章节和配套实验，讲清机制、代码路径与证据；若交付在线书籍，同时落实网页布局、视觉样式和阅读交互。"
